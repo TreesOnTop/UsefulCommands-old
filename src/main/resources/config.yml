@@ -1,0 +1,5 @@
+OutputPrefix: '§6[UsefulCommands]§r '
+Broadcast:
+  - ''
+  - '§7[§cBroadcast§7]§r <broadcast-message>'
+  - ''

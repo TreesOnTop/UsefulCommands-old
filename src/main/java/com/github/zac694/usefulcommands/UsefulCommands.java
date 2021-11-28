@@ -1,6 +1,7 @@
 package com.github.zac694.usefulcommands;
 
 import com.github.zac694.usefulcommands.commands.*;
+import com.github.zac694.usefulcommands.events.AsyncPlayerChat;
 import com.github.zac694.usefulcommands.events.EntityDamage;
 import com.github.zac694.usefulcommands.events.PlayerMove;
 import dev.jorel.commandapi.CommandAPI;
@@ -23,8 +24,12 @@ public final class UsefulCommands extends JavaPlugin {
         God.register();
         UsefulCommand.register();
         Freeze.register();
+        Mute.register();
+        Unmute.register();
+        Tempmute.register();
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
+        getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
     }
     public void onLoad(){
         CommandAPI.onLoad(new CommandAPIConfig());

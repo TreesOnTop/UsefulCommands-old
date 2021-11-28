@@ -16,26 +16,25 @@ public class God {
                         ConfigHandler.getData().set("god." + ((Player)args[0]).getUniqueId(), null);
                         ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer in god mode");
                         sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is no longer god mode");
+                        return;
                     }
-                    else{
-                        ConfigHandler.getData().set("god." + ((Player)args[0]).getUniqueId(), true);
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is now in god mode");
-                        ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in god mode");
-                    }
+                    ConfigHandler.getData().set("god." + ((Player)args[0]).getUniqueId(), true);
                     ConfigHandler.save();
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is now in god mode");
+                    ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in god mode");
                 }).register();
         new CommandAPICommand("god")
                 .withPermission(CommandPermission.fromString("usefulcommands.god"))
                 .executesPlayer((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("god." + sender.getUniqueId())) {
                         ConfigHandler.getData().set("god." + sender.getUniqueId(), null);
+                        ConfigHandler.save();
                         sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer in god mode");
+                        return;
                     }
-                    else{
-                        ConfigHandler.getData().set("god." + sender.getUniqueId(), true);
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in god mode");
-                    }
+                    ConfigHandler.getData().set("god." + sender.getUniqueId(), true);
                     ConfigHandler.save();
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in god mode");
                 }).register();
     }
 }

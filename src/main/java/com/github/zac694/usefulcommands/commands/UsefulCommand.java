@@ -3,14 +3,13 @@ package com.github.zac694.usefulcommands.commands;
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
-import dev.jorel.commandapi.arguments.StringArgument;
-import dev.jorel.commandapi.executors.CommandExecutor;
+import dev.jorel.commandapi.arguments.GreedyStringArgument;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
-                .withArguments(new StringArgument("target"))
+                .withArguments(new GreedyStringArgument("target"))
                 .withPermission(CommandPermission.fromString("usefulcommands.usefulcommands"))
                 .withAliases("uc")
                 .executes((sender, args) -> {
@@ -30,18 +29,51 @@ public class UsefulCommand {
                             ConfigHandler.setup();
                             sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Data reset");
                         }
+                        case "help", "help 1" -> {
+                            sender.sendMessage("§6--- UsefulCommands help ---");
+                            sender.sendMessage("/broadcast <message> - sends a message to all players");
+                            sender.sendMessage("/clearchat - sends 100 blank messages to clear the chat");
+                            sender.sendMessage("/feed [player] - gives a player full hunger");
+                            sender.sendMessage("/fly [player] - allows a player to fly");
+                            sender.sendMessage("/freeze <player> - stops a player from moving");
+                            sender.sendMessage("/gma [player] - sets a player's gamemode to adventure");
+                            sender.sendMessage("/gmc [player] - sets a player's gamemode to creative");
+                            sender.sendMessage("/gms [player] - sets a player's gamemode to survival");
+                            sender.sendMessage("/uc help 2 for more commands");
+                            sender.sendMessage("");
+                        }
+                        case "help 2" -> {
+                            sender.sendMessage("§6--- UsefulCommands help 2 ---");
+                            sender.sendMessage("/gmsp [player] - sets a player's gamemode to survival");
+                            sender.sendMessage("/god [player] - makes a player unable to take any damage");
+                            sender.sendMessage("/heal [player] - heals a player to max health");
+                            sender.sendMessage("/inventorysee <player> - allows you to see and edit a players inventory");
+                            sender.sendMessage("/mute <player> - mutes a player");
+                            sender.sendMessage("/suicide - kills the player");
+                            sender.sendMessage("/tempmute <player> <time> - temporarily mutes a player");
+                            sender.sendMessage("/unmute <player> - unmutes a player");
+                            sender.sendMessage("/uc help 3 for more commands");
+                            sender.sendMessage("");
+                        }
+                        case "help 3" -> {
+                            sender.sendMessage("§6--- UsefulCommands help 2 ---");
+                            sender.sendMessage("/usefulcommands [text] - command for server managing");
+                            sender.sendMessage("");
+                        }
                         default -> {
                             sender.sendMessage("§6--- UsefulCommands help ---");
                             sender.sendMessage("/usefulcommands - Show this page");
                             sender.sendMessage("/usefulcommands reload - reloads config");
                             sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                             sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
+                            sender.sendMessage("/usefulcommands help - shows all commands");
                             sender.sendMessage("" + args[0]);
                         }
                     }
                 }).register();
         new CommandAPICommand("usefulcommands")
                 .withPermission(CommandPermission.fromString("usefulcommands.usefulcommands"))
+                .withAliases("uc")
                 .executesPlayer((sender, args) -> {
                     sender.sendMessage("§6--- UsefulCommands help ---");
                     sender.sendMessage("/usefulcommands - Show this help");

@@ -18,37 +18,28 @@ public class Vanish {
                 .withArguments(new PlayerArgument("target"))
                 .withPermission(CommandPermission.fromString("usefulcommands.vanish.others"))
                 .executes((sender, args) -> {
-                    List<String> vanish = new ArrayList<>(ConfigHandler.getConfig().getStringList("vanish"));
-                    if(ConfigHandler.getData().getStringList("vanish").contains(((Player)args[0]).getUniqueId().toString())){
-                        Bukkit.getOnlinePlayers().forEach(player -> player.showPlayer(UsefulCommands.getMainClass(), (Player)args[0]));
-                        vanish.remove(((Player)args[0]).getUniqueId().toString());
-                        ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer in vanish");
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is no longer vanish");
-                    }else {
-                        Bukkit.getOnlinePlayers().forEach(player -> player.hidePlayer(UsefulCommands.getMainClass(), (Player) args[0]));
-                        vanish.add(((Player) args[0]).getUniqueId().toString());
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player) args[0]).getName() + " is now in vanish");
-                        ((Player) args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in vanish");
-                    }
-                    ConfigHandler.getData().set("vanish", vanish);
-                    ConfigHandler.save();
+                    vanishing((Player) args[0]);
                 }).register();
         new CommandAPICommand("vanish")
                 .withAliases("v")
                 .withPermission(CommandPermission.fromString("usefulcommands.vanish"))
                 .executesPlayer((sender, args) -> {
-                    List<String> vanish = new ArrayList<>(ConfigHandler.getConfig().getStringList("vanish"));
-                    if(ConfigHandler.getData().getStringList("vanish").contains(sender.getUniqueId().toString())){
-                        Bukkit.getOnlinePlayers().forEach(player -> player.showPlayer(UsefulCommands.getMainClass(), sender));
-                        vanish.remove(sender.getUniqueId().toString());
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer in vanish");
-                    }else {
-                        Bukkit.getOnlinePlayers().forEach(player -> player.hidePlayer(UsefulCommands.getMainClass(), sender));
-                        vanish.add(sender.getUniqueId().toString());
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in vanish");
-                    }
-                    ConfigHandler.getData().set("vanish", vanish);
-                    ConfigHandler.save();
+                    vanishing(sender);
                 }).register();
+    }
+
+    private static void vanishing(Player target) {
+        List<String> vanish = new ArrayList<>(ConfigHandler.getConfig().getStringList("vanish"));
+        if (ConfigHandler.getData().getStringList("vanish").contains(target.getUniqueId().toString())) {
+            Bukkit.getOnlinePlayers().forEach(player -> player.showPlayer(UsefulCommands.getMainClass(), target));
+            vanish.remove(target.getUniqueId().toString());
+            target.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer in vanish");
+        } else {
+            Bukkit.getOnlinePlayers().forEach(player -> player.hidePlayer(UsefulCommands.getMainClass(), target));
+            vanish.add(target.getUniqueId().toString());
+            target.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in vanish");
+        }
+        ConfigHandler.getData().set("vanish", vanish);
+        ConfigHandler.save();
     }
 }

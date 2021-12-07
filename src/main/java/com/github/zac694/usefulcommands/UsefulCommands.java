@@ -37,6 +37,7 @@ public final class UsefulCommands extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
     }
     public void onLoad(){
         CommandAPI.onLoad(new CommandAPIConfig());

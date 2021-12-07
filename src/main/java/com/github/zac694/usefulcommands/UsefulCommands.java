@@ -3,6 +3,7 @@ package com.github.zac694.usefulcommands;
 import com.github.zac694.usefulcommands.commands.*;
 import com.github.zac694.usefulcommands.events.AsyncPlayerChat;
 import com.github.zac694.usefulcommands.events.EntityDamage;
+import com.github.zac694.usefulcommands.events.PlayerJoin;
 import com.github.zac694.usefulcommands.events.PlayerMove;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIConfig;

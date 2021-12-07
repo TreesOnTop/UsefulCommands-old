@@ -12,7 +12,8 @@ public class PlayerJoin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event){
         Bukkit.getOnlinePlayers().forEach(player -> {
             if (ConfigHandler.getData().getStringList("vanish").contains(player.getUniqueId().toString())) {
-            event.getPlayer().hidePlayer(UsefulCommands.getMainClass(), player);
-        }});
+                event.getPlayer().hidePlayer(UsefulCommands.getMainClass(), player);
+            }
+        });
     }
 }

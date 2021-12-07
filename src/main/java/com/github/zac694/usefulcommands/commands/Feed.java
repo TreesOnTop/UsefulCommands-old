@@ -20,7 +20,7 @@ public class Feed {
                 .withPermission(CommandPermission.fromString("usefulcommands.feed"))
                 .executesPlayer((sender, args) -> {
                     sender.setFoodLevel(20);
-                    sender.sendMessage("§aYou have been fed");
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been fed");
                 }).register();
     }
 }

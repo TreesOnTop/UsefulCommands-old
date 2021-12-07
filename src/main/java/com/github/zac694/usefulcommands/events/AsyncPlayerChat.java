@@ -7,12 +7,12 @@ import org.bukkit.event.Listener;
 public class AsyncPlayerChat implements Listener {
     @EventHandler
     public void onAsyncPlayerChat(org.bukkit.event.player.AsyncPlayerChatEvent event){
-        if(!event.isCancelled() && ConfigHandler.getData().getBoolean("muted." + event.getPlayer().getUniqueId()) || !event.isCancelled() && ConfigHandler.getData().getInt("tmuted." + event.getPlayer().getUniqueId()) >= ((int)System.currentTimeMillis())){
+        if(!event.isCancelled() && ConfigHandler.getData().getBoolean("muted." + event.getPlayer().getUniqueId()) || !event.isCancelled() && ConfigHandler.getData().getLong("tmuted." + event.getPlayer().getUniqueId()) >= System.currentTimeMillis()){
             event.setCancelled(true);
             event.getPlayer().sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "§cYou are muted");
             return;
         }
-        if(ConfigHandler.getData().getInt("tmuted." + event.getPlayer().getUniqueId()) < ((int)System.currentTimeMillis())){
+        if(ConfigHandler.getData().getLong("tmuted." + event.getPlayer().getUniqueId()) < System.currentTimeMillis()){
             ConfigHandler.getData().set("tmuted." + event.getPlayer().getUniqueId(), null);
             ConfigHandler.save();
         }

@@ -1,4 +1,5 @@
 OutputPrefix: '§6[UsefulCommands]§r '
+# <broadcast-message> and <broadcast-player> will be replaced with the broadcast message and player who broadcasted
 Broadcast:
   - ''
   - '§7[§cBroadcast§7]§r <broadcast-message>'

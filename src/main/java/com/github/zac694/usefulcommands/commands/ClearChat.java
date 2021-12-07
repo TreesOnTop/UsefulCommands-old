@@ -14,7 +14,7 @@ public class ClearChat {
                     for (int x = 0; x < 100; x++) {
                         Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(""));
                     }
-                    Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage( ConfigHandler.getConfig().getString("OutputPrefix") + sender.getName() + "cleared the chat"));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage( ConfigHandler.getConfig().getString("OutputPrefix") + sender.getName() + " cleared the chat"));
                 }).register();
     }
 }

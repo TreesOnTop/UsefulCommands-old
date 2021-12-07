@@ -14,8 +14,7 @@ public class Tempmute {
                 .withArguments(new PlayerArgument("target"))
                 .withArguments(new TimeArgument("time"))
                 .executes((sender, args) -> {
-                    int time = (int)args[1];
-                    int untime = (int)(time*50+System.currentTimeMillis());
+                    long untime = (((long)args[1])*50+System.currentTimeMillis());
                     if(ConfigHandler.getData().contains("tmuted." + ((Player)args[0]).getUniqueId())){
                         sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is already muted");
                         return;

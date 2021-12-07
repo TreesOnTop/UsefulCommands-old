@@ -49,9 +49,7 @@ public class ConfigHandler {
     }
     public static void save(){
         try{
-            File configFile = new File(Bukkit.getServer().getPluginManager().getPlugin("UsefulCommands").getDataFolder(), "config.yml");
             File dataFile = new File(Bukkit.getServer().getPluginManager().getPlugin("UsefulCommands").getDataFolder(), "data.yml");
-            config.save(configFile);
             data.save(dataFile);
         }catch(IOException e){
             Bukkit.getConsoleSender().sendMessage("§cUnable to save config");

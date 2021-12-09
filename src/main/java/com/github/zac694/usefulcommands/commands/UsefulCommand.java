@@ -16,12 +16,12 @@ public class UsefulCommand {
                     switch (string) {
                         case "reload" -> {
                             Util.reloadAllConfig();
-                            sender.sendMessage(/*("OutputPrefix") + */"Plugin reloaded");
+                            sender.sendMessage(Util.outputPrefix() + "Plugin reloaded");
                         }
                         case "resetconfig" -> {
                             Util.deleteAllConfig();
                             Util.reloadAllConfig();
-                            sender.sendMessage(/*("OutputPrefix") + */"Config reset");
+                            sender.sendMessage(Util.outputPrefix() + "Config reset");
                         }
                         case "help", "help 1" -> {
                             sender.sendMessage("§6--- UsefulCommands help ---");

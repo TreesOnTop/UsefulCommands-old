@@ -21,6 +21,9 @@ public final class UsefulCommands extends MultiConfigJavaPlugin {
 
         //register all the config, then do the... thing
         Util.registerConfig("config.yml");
+        Util.registerConfig("god.yml");
+        Util.registerConfig("muted.yml");
+        Util.registerConfig("frozened.yml");
         Util.registerConfig("vanished.yml");
         Util.reloadAllConfig(); //here is the... thing
 

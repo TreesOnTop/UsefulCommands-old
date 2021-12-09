@@ -4,6 +4,7 @@ import com.github.zac694.usefulcommands.commands.register.Register;
 import com.github.zac694.usefulcommands.util.MultiConfigJavaPlugin;
 import com.github.zac694.usefulcommands.events.AsyncPlayerChat;
 import com.github.zac694.usefulcommands.events.EntityDamage;
+import com.github.zac694.usefulcommands.events.PlayerJoin;
 import com.github.zac694.usefulcommands.events.PlayerMove;
 import com.github.zac694.usefulcommands.util.Util;
 import dev.jorel.commandapi.CommandAPI;
@@ -27,7 +28,7 @@ public final class UsefulCommands extends MultiConfigJavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
-        getServer().getPluginManager().registerEvents(new PlayerMove(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
     }
    
     @Override

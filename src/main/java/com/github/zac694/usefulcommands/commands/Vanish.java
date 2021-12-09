@@ -1,14 +1,13 @@
 package com.github.zac694.usefulcommands.commands;
 
-import com.github.zac694.usefulcommands.ConfigHandler;
-import com.github.zac694.usefulcommands.UsefulCommands;
+import com.github.zac694.usefulcommands.util.Util;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Vanish {
@@ -29,17 +28,18 @@ public class Vanish {
     }
 
     private static void vanishing(Player target) {
-        List<String> vanish = new ArrayList<>(ConfigHandler.getConfig().getStringList("vanish"));
-        if (ConfigHandler.getData().getStringList("vanish").contains(target.getUniqueId().toString())) {
-            Bukkit.getOnlinePlayers().forEach(player -> player.showPlayer(UsefulCommands.getMainClass(), target));
+        FileConfiguration vanishConfig = Util.main().getConfig("vanished.yml");
+        List<String> vanish = vanishConfig.getStringList("playerlist");
+        if (vanish.contains(target.getUniqueId().toString())) {
+            Bukkit.getOnlinePlayers().forEach(player -> player.showPlayer(Util.main(), target));
             vanish.remove(target.getUniqueId().toString());
-            target.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer in vanish");
+            target.sendMessage(Util.outputPrefix() + "You are no longer in vanish");
         } else {
-            Bukkit.getOnlinePlayers().forEach(player -> player.hidePlayer(UsefulCommands.getMainClass(), target));
+            Bukkit.getOnlinePlayers().forEach(player -> player.hidePlayer(Util.main(), target));
             vanish.add(target.getUniqueId().toString());
-            target.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in vanish");
+            target.sendMessage(Util.outputPrefix() + "You are now in vanish");
         }
-        ConfigHandler.getData().set("vanish", vanish);
-        ConfigHandler.save();
+        vanishConfig.set("vanish", vanish);
+        Util.reloadConfig("vanished.yml");
     }
 }

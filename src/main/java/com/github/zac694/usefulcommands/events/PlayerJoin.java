@@ -9,8 +9,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
-        if(ConfigHandler.getData().getStringList("vanish").contains(event.getPlayer().getUniqueId().toString())){
-            Bukkit.getOnlinePlayers().forEach(player -> event.getPlayer().hidePlayer(UsefulCommands.getMainClass(), player));
+        if(Util.main().getConfig("vanished.yml").getStringList("vanish")
+                .contains(event.getPlayer().getUniqueId().toString())){
+            Bukkit.getOnlinePlayers().forEach(player -> event.getPlayer().hidePlayer(Util.main(), player));
         }
         Bukkit.getOnlinePlayers().forEach(player -> {
             if (Util.main().getConfig("vanished").getStringList("vanish")

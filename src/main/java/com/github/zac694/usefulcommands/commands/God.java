@@ -18,13 +18,13 @@ public class God {
                     Player p = (Player) args[0];
                     if(godConfig.getBoolean(p.getUniqueId().toString())) {
                         godConfig.set("god." + ((Player)args[0]).getUniqueId(), null);
-                        Util.main().reloadConfig("god.yml");
+                        Util.reloadConfig("god.yml");
                         p.sendMessage(Util.outputPrefix() + "You are no longer in god mode");
                         sender.sendMessage(Util.outputPrefix() + p.getName() + " is no longer god mode");
                         return;
                     }
                     godConfig.set(p.getUniqueId().toString(), true);
-                    Util.main().reloadConfig("god.yml");
+                    Util.reloadConfig("god.yml");
                     sender.sendMessage(Util.outputPrefix() + p.getName() + " is now in god mode");
                     p.sendMessage(Util.outputPrefix() + "You are now in god mode");
                 }).register();
@@ -35,12 +35,12 @@ public class God {
                     FileConfiguration godConfig = Util.main().getConfig("god.yml");
                     if(godConfig.getBoolean(sender.getUniqueId().toString())) {
                         godConfig.set("god." + ((Player)args[0]).getUniqueId(), null);
-                        Util.main().reloadConfig("god.yml");
+                        Util.reloadConfig("god.yml");
                         sender.sendMessage(Util.outputPrefix() + "You are no longer in god mode");
                         return;
                     }
                     godConfig.set(sender.getUniqueId().toString(), true);
-                    Util.main().reloadConfig("god.yml");
+                    Util.reloadConfig("god.yml");
                     sender.sendMessage(Util.outputPrefix() + sender.getName() + "You are now in god mode");
                 }).register();
     }

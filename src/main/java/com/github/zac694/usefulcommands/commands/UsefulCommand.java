@@ -1,11 +1,10 @@
 package com.github.zac694.usefulcommands.commands;
 
-import com.github.zac694.usefulcommands.ConfigHandler;
+import com.github.zac694.usefulcommands.util.Util;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
 public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
@@ -16,18 +15,13 @@ public class UsefulCommand {
                     String string = (String)args[0];
                     switch (string) {
                         case "reload" -> {
-                            ConfigHandler.reload();
-                            sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Plugin reloaded");
+                            Util.reloadAllConfig();
+                            sender.sendMessage(Util.outputPrefix() + "Plugin reloaded");
                         }
                         case "resetconfig" -> {
-                            ConfigHandler.getConfigFile().delete();
-                            ConfigHandler.setup();
-                            sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Config reset");
-                        }
-                        case "resetdata" -> {
-                            ConfigHandler.getDataFile().delete();
-                            ConfigHandler.setup();
-                            sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Data reset");
+                            Util.deleteAllConfig();
+                            Util.reloadAllConfig();
+                            sender.sendMessage(Util.outputPrefix() + "Config reset");
                         }
                         case "help", "help 1" -> {
                             sender.sendMessage("§6--- UsefulCommands help ---");
@@ -68,7 +62,6 @@ public class UsefulCommand {
                             sender.sendMessage("/usefulcommands - Show this page");
                             sender.sendMessage("/usefulcommands reload - reloads config");
                             sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
-                            sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
                             sender.sendMessage("/usefulcommands help - shows all commands");
                             sender.sendMessage("" + args[0]);
                         }

@@ -1,10 +1,11 @@
 package com.github.zac694.usefulcommands.commands;
 
-import com.github.zac694.usefulcommands.ConfigHandler;
+import com.github.zac694.usefulcommands.util.Util;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.TimeArgument;
+
 import org.bukkit.entity.Player;
 
 public class Tempmute {
@@ -15,14 +16,19 @@ public class Tempmute {
                 .withArguments(new TimeArgument("time"))
                 .executes((sender, args) -> {
                     long untime = (((long)args[1])*50+System.currentTimeMillis());
-                    if(ConfigHandler.getData().contains("tmuted." + ((Player)args[0]).getUniqueId())){
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is already muted");
+                    Player p = (Player) args[0];//victim, make the code slighly more readable
+                    if(Util.main().getConfig("muted.yml").contains("tmuted." + p.getUniqueId())){
+                        sender.sendMessage(Util.main().getConfig().getString("OutputPrefix")
+                                + p.getName() + " is already muted");
                         return;
                     }
-                    ConfigHandler.getData().set("tmuted." + ((Player)args[0]).getUniqueId(), untime);
-                    ConfigHandler.save();
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been muted for " + args[1]);
-                    ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now muted for " + args[1]);
+                    Util.main().getConfig("muted.yml").set("tmuted." + p.getUniqueId(), untime);
+                    Util.reloadConfig("muted.yml");
+
+                    sender.sendMessage(Util.main().getConfig().getString("OutputPrefix")
+                            + p.getName() + " has been muted for " + args[1]);
+                    p.sendMessage(Util.main().getConfig().getString("OutputPrefix")
+                            + "You are now muted for " + args[1]);
                 }).register();
     }
 }

@@ -1,9 +1,11 @@
 package com.github.zac694.usefulcommands.commands;
 
-import com.github.zac694.usefulcommands.ConfigHandler;
+import com.github.zac694.usefulcommands.util.Util;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
+
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class Mute {
@@ -12,14 +14,16 @@ public class Mute {
                 .withPermission(CommandPermission.fromString("usefulcommands.mute"))
                 .withArguments(new PlayerArgument("target"))
                 .executes((sender, args) -> {
-                    if(ConfigHandler.getData().getBoolean("muted." + ((Player)args[0]).getUniqueId())){
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is already muted");
+                    Player p = (Player)args[0];
+                    FileConfiguration muteConfig = Util.main().getConfig("muted.yml");
+                    if(muteConfig.getBoolean("muted." + p.getUniqueId())){
+                        sender.sendMessage(Util.outputPrefix() + p.getName() + " is already muted");
                         return;
                     }
-                    ConfigHandler.getData().set("muted." + ((Player)args[0]).getUniqueId(), true);
-                    ConfigHandler.save();
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is now muted");
-                    ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now muted");
+                    muteConfig.set("muted." + p.getUniqueId(), true);
+                    Util.reloadConfig("muted.yml");
+                    sender.sendMessage(Util.outputPrefix() + p.getName() + " is now muted");
+                    p.sendMessage(Util.outputPrefix() + "You are now muted");
                 }).register();
     }
 }

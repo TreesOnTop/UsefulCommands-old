@@ -1,9 +1,11 @@
 package com.github.zac694.usefulcommands.commands;
 
-import com.github.zac694.usefulcommands.ConfigHandler;
+import com.github.zac694.usefulcommands.util.Util;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
+
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class Freeze {
@@ -12,17 +14,18 @@ public class Freeze {
                 .withPermission(CommandPermission.fromString("usefulcommands.freeze"))
                 .withArguments(new PlayerArgument("target"))
                 .executes((sender, args) -> {
-                    if(ConfigHandler.getData().getBoolean("frozen." + ((Player)args[0]).getUniqueId())){
-                        ConfigHandler.getData().set("frozen." + ((Player)args[0]).getUniqueId(), null);
-                        ConfigHandler.save();
-                        sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is no longer frozen");
-                        ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are no longer frozen");
-                        return;
+                    FileConfiguration config = Util.main().getConfig("frozen.yml");
+                    Player p = (Player) args[0];
+                    if (config.getBoolean(p.getUniqueId().toString())) {
+                        config.set(p.getUniqueId().toString(), null);
+                        sender.sendMessage(Util.outputPrefix() + p.getName() + " is no longer frozen");
+                        p.sendMessage(Util.outputPrefix() + "You are no longer frozen");
+                    } else {
+                        config.set(p.getUniqueId().toString(), true);
+                        sender.sendMessage(Util.outputPrefix() + p.getName() + " is now frozen");
+                        p.sendMessage(Util.outputPrefix() + "You are now frozen");
                     }
-                    ConfigHandler.getData().set("frozen." + ((Player)args[0]).getUniqueId(), true);
-                    ConfigHandler.save();
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is now frozen");
-                    ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now frozen");
+                    Util.reloadConfig("frozen.yml");
                 }).register();
     }
 }

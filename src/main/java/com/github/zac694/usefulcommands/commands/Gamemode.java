@@ -11,6 +11,12 @@ import static org.bukkit.GameMode.*;
 public class Gamemode {
     public static void register(){
         new CommandAPICommand("gmc")
+                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.creative"))
+                .executesPlayer((sender, args) -> {
+                    sender.setGameMode(CREATIVE);
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to creative");
+                }).register();
+        new CommandAPICommand("gmc")
                 .withArguments(new PlayerArgument("target"))
                 .withPermission(CommandPermission.fromString("usefulcommands.gamemode.creative.others"))
                 .executes((sender, args) -> {
@@ -18,11 +24,11 @@ public class Gamemode {
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to creative");
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + "'s gamemode has been set to creative");
                 }).register();
-        new CommandAPICommand("gmc")
-                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.creative"))
+        new CommandAPICommand("gms")
+                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.survival"))
                 .executesPlayer((sender, args) -> {
-                    sender.setGameMode(CREATIVE);
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to creative");
+                    sender.setGameMode(SURVIVAL);
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to survival");
                 }).register();
         new CommandAPICommand("gms")
                 .withArguments(new PlayerArgument("target"))
@@ -32,11 +38,11 @@ public class Gamemode {
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to survival");
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + "'s gamemode has been set to survival");
                 }).register();
-        new CommandAPICommand("gms")
-                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.survival"))
+        new CommandAPICommand("gmsp")
+                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.spectator"))
                 .executesPlayer((sender, args) -> {
-                    sender.setGameMode(SURVIVAL);
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to survival");
+                    sender.setGameMode(SPECTATOR);
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to spectator");
                 }).register();
         new CommandAPICommand("gmsp")
                 .withArguments(new PlayerArgument("target"))
@@ -46,11 +52,11 @@ public class Gamemode {
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to spectator");
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + "'s gamemode has been set to spectator");
                 }).register();
-        new CommandAPICommand("gmsp")
-                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.spectator"))
+        new CommandAPICommand("gma")
+                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.adventure"))
                 .executesPlayer((sender, args) -> {
-                    sender.setGameMode(SPECTATOR);
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to spectator");
+                    sender.setGameMode(ADVENTURE);
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to adventure");
                 }).register();
         new CommandAPICommand("gma")
                 .withArguments(new PlayerArgument("target"))
@@ -59,12 +65,6 @@ public class Gamemode {
                     ((Player)args[0]).setGameMode(ADVENTURE);
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to adventure");
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + "'s gamemode has been set to adventure");
-                }).register();
-        new CommandAPICommand("gma")
-                .withPermission(CommandPermission.fromString("usefulcommands.gamemode.adventure"))
-                .executesPlayer((sender, args) -> {
-                    sender.setGameMode(ADVENTURE);
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your gamemode has been set to adventure");
                 }).register();
     }
 }

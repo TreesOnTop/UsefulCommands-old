@@ -12,18 +12,18 @@ import static org.bukkit.attribute.Attribute.GENERIC_MAX_HEALTH;
 public class Heal {
     public static void register(){
         new CommandAPICommand("heal")
+                .withPermission(CommandPermission.fromString("usefulcommands.heal"))
+                .executesPlayer((sender, args) -> {
+                    sender.setHealth(Objects.requireNonNull(sender.getAttribute(GENERIC_MAX_HEALTH)).getValue());
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been healed");
+                }).register();
+        new CommandAPICommand("heal")
                 .withArguments(new PlayerArgument("target"))
                 .withPermission(CommandPermission.fromString("usefulcommands.heal.others"))
                 .executes((sender, args) -> {
                     ((Player)args[0]).setHealth(Objects.requireNonNull(((Player)args[0]).getAttribute(GENERIC_MAX_HEALTH)).getValue());
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been healed");
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been healed");
-                }).register();
-        new CommandAPICommand("heal")
-                .withPermission(CommandPermission.fromString("usefulcommands.heal"))
-                .executesPlayer((sender, args) -> {
-                    sender.setHealth(Objects.requireNonNull(sender.getAttribute(GENERIC_MAX_HEALTH)).getValue());
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been healed");
                 }).register();
     }
 }

@@ -15,16 +15,16 @@ public class Vanish {
     public static void register(){
         new CommandAPICommand("vanish")
                 .withAliases("v")
+                .withPermission(CommandPermission.fromString("usefulcommands.vanish"))
+                .executesPlayer((sender, args) -> {
+                    vanishing(sender);
+                }).register();
+        new CommandAPICommand("vanish")
+                .withAliases("v")
                 .withArguments(new PlayerArgument("target"))
                 .withPermission(CommandPermission.fromString("usefulcommands.vanish.others"))
                 .executes((sender, args) -> {
                     vanishing((Player) args[0]);
-                }).register();
-        new CommandAPICommand("vanish")
-                .withAliases("v")
-                .withPermission(CommandPermission.fromString("usefulcommands.vanish"))
-                .executesPlayer((sender, args) -> {
-                    vanishing(sender);
                 }).register();
     }
 

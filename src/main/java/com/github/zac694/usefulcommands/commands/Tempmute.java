@@ -3,6 +3,7 @@ package com.github.zac694.usefulcommands.commands;
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
+import dev.jorel.commandapi.arguments.LongArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 import org.bukkit.entity.Player;
@@ -14,23 +15,26 @@ public class Tempmute {
         new CommandAPICommand("tempmute")
                 .withPermission(CommandPermission.fromString("usefulcommands.tempmute"))
                 .withArguments(new PlayerArgument("target"))
-                .withArguments(new StringArgument("time"))
+                .withArguments(new LongArgument("time"))
+                .withArguments(new StringArgument("timeFormat"))
                 .executes((sender, args) -> {
-                    String timeFormat = args[1].toString().substring(args[1].toString().length() - 1);
-                    double time = Double.parseDouble(args[1].toString().substring(0, args[1].toString().length()-1));
                     long sec;
-                    switch(timeFormat.toLowerCase()){
+                    switch(args[2].toString().toLowerCase()){
+                        case "minutes":
+                        case "min":
                         case "m":
-                            sec = (long)Math.floor(time*60);
+                            sec = (long)args[1]*60;
                             break;
+                        case "hours":
                         case "h":
-                            sec = (long)Math.floor(time*3600);
+                            sec = (long)args[1]*3600;
                             break;
+                        case "days":
                         case "d":
-                            sec = (long)Math.floor(time*86400);
+                            sec = (long)args[1]*86400;
                             break;
                         default:
-                            sec = (long)Math.floor(time);
+                            sec = (long)args[1];
                     }
                     if(ConfigHandler.getData().contains("tmuted." + ((Player)args[0]).getUniqueId())){
                         sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is already muted");

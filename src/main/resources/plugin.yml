@@ -1,7 +1,7 @@
 name: UsefulCommands
 version: '${project.version}'
 main: com.github.zac694.usefulcommands.UsefulCommands
-api-version: 1.14
+api-version: 1.13
 prefix: UsefulCommands
 authors: [ TreesOnTop ]
 description: A plugin with a few useful commands used to replace essentialsx

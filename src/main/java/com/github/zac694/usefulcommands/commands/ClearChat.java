@@ -4,7 +4,6 @@ import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 public class ClearChat {
     public static void register(){

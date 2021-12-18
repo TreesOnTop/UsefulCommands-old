@@ -5,6 +5,7 @@ import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import org.bukkit.entity.Player;
+
 import java.util.Objects;
 
 import static org.bukkit.attribute.Attribute.GENERIC_MAX_HEALTH;

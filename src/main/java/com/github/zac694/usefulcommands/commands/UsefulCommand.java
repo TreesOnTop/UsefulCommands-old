@@ -10,7 +10,7 @@ public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
                 .withArguments(new GreedyStringArgument("target"))
-                .withPermission(CommandPermission.fromString("usefulcommands.usefulcommands"))
+                .withPermission("usefulcommands.usefulcommands")
                 .withAliases("uc")
                 .executes((sender, args) -> {
                     String string = (String)args[0];

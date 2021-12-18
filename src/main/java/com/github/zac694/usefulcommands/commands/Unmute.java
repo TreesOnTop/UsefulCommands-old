@@ -2,14 +2,13 @@ package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import org.bukkit.entity.Player;
 
 public class Unmute {
     public static void register(){
         new CommandAPICommand("unmute")
-                .withPermission(CommandPermission.fromString("usefulcommands.mute"))
+                .withPermission("usefulcommands.mute")
                 .withArguments(new PlayerArgument("target"))
                 .executes((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("muted." + ((Player)args[0]).getUniqueId()) || ConfigHandler.getData().contains("tmuted." + ((Player)args[0]).getUniqueId())){

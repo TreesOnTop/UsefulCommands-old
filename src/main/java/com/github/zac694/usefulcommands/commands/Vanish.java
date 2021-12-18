@@ -3,7 +3,6 @@ package com.github.zac694.usefulcommands.commands;
 import com.github.zac694.usefulcommands.ConfigHandler;
 import com.github.zac694.usefulcommands.UsefulCommands;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,14 +14,13 @@ public class Vanish {
     public static void register(){
         new CommandAPICommand("vanish")
                 .withAliases("v")
-                .withPermission(CommandPermission.fromString("usefulcommands.vanish"))
+                .withPermission("usefulcommands.vanish")
                 .executesPlayer((sender, args) -> {
                     vanishing(sender);
                 }).register();
         new CommandAPICommand("vanish")
                 .withAliases("v")
-                .withArguments(new PlayerArgument("target"))
-                .withPermission(CommandPermission.fromString("usefulcommands.vanish.others"))
+                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.vanish.others"))
                 .executes((sender, args) -> {
                     vanishing((Player) args[0]);
                 }).register();

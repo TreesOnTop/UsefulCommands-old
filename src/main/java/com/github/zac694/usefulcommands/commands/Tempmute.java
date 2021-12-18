@@ -42,8 +42,8 @@ public class Tempmute {
                     }
                     ConfigHandler.getData().set("tmuted." + ((Player)args[0]).getUniqueId(), sec + Instant.now().getEpochSecond());
                     ConfigHandler.save();
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been muted for " + args[1]);
-                    ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now muted for " + args[1]);
+                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been muted for " + args[1] + args[2]);
+                    ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now muted for " + args[1] + args[2]);
                 }).register();
     }
 }

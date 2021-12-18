@@ -15,21 +15,22 @@ public class UsefulCommand {
                 .executes((sender, args) -> {
                     String string = (String)args[0];
                     switch (string) {
-                        case "reload" -> {
+                        case "reload":
                             ConfigHandler.reload();
                             sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Plugin reloaded");
-                        }
-                        case "resetconfig" -> {
+                            break;
+                        case "resetconfig":
                             ConfigHandler.getConfigFile().delete();
                             ConfigHandler.setup();
                             sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Config reset");
-                        }
-                        case "resetdata" -> {
+                            break;
+                        case "resetdata":
                             ConfigHandler.getDataFile().delete();
                             ConfigHandler.setup();
                             sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Data reset");
-                        }
-                        case "help", "help 1" -> {
+                            break;
+                        case "help":
+                        case "help 1":
                             sender.sendMessage("§6--- UsefulCommands help ---");
                             sender.sendMessage("/broadcast <message> - broadcasts a message to all players");
                             sender.sendMessage("/clearchat - clears the chat");
@@ -41,8 +42,8 @@ public class UsefulCommand {
                             sender.sendMessage("/gmc [player] - sets a player's gamemode to creative");
                             sender.sendMessage("/uc help 2 for more commands");
                             sender.sendMessage("");
-                        }
-                        case "help 2" -> {
+                            break;
+                        case "help 2":
                             sender.sendMessage("§6--- UsefulCommands help 2 ---");
                             sender.sendMessage("/gms [player] - sets a player's gamemode to survival");
                             sender.sendMessage("/gmsp [player] - sets a player's gamemode to spectator");
@@ -54,16 +55,16 @@ public class UsefulCommand {
                             sender.sendMessage("/suicide - kills the player");
                             sender.sendMessage("/uc help 3 for more commands");
                             sender.sendMessage("");
-                        }
-                        case "help 3" -> {
+                            break;
+                        case "help 3":
                             sender.sendMessage("§6--- UsefulCommands help 2 ---");
                             sender.sendMessage("/tempmute <player> <time> - temporarily mutes a player");
                             sender.sendMessage("/usefulcommands [text] - command for server managing");
                             sender.sendMessage("/unmute <player> - unmutes a player");
                             sender.sendMessage("/vanish [<player>] - hides a player from everyone on the server");
                             sender.sendMessage("");
-                        }
-                        default -> {
+                            break;
+                        default:
                             sender.sendMessage("§6--- UsefulCommands help ---");
                             sender.sendMessage("/usefulcommands - Show this page");
                             sender.sendMessage("/usefulcommands reload - reloads config");
@@ -71,7 +72,7 @@ public class UsefulCommand {
                             sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
                             sender.sendMessage("/usefulcommands help - shows all commands");
                             sender.sendMessage("" + args[0]);
-                        }
+                            break;
                     }
                 }).register();
         new CommandAPICommand("usefulcommands")

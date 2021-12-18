@@ -2,7 +2,6 @@ package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.LongArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
@@ -13,7 +12,7 @@ import java.time.Instant;
 public class Tempmute {
     public static void register(){
         new CommandAPICommand("tempmute")
-                .withPermission(CommandPermission.fromString("usefulcommands.tempmute"))
+                .withPermission("usefulcommands.tempmute")
                 .withArguments(new PlayerArgument("target"))
                 .withArguments(new LongArgument("time"))
                 .withArguments(new StringArgument("timeFormat"))

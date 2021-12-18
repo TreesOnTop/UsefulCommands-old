@@ -6,7 +6,7 @@
 
     <groupId>com.github.zac694.usefulcommands</groupId>
     <artifactId>UsefulCommands</artifactId>
-    <version>1.0.0 1.18</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>UsefulCommands</name>

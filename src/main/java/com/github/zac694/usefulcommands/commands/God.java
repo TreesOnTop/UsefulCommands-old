@@ -2,14 +2,13 @@ package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import org.bukkit.entity.Player;
 
 public class God {
     public static void register(){
         new CommandAPICommand("god")
-                .withPermission(CommandPermission.fromString("usefulcommands.god"))
+                .withPermission("usefulcommands.god")
                 .executesPlayer((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("god." + sender.getUniqueId())) {
                         ConfigHandler.getData().set("god." + sender.getUniqueId(), null);
@@ -22,8 +21,7 @@ public class God {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in god mode");
                 }).register();
         new CommandAPICommand("god")
-                .withArguments(new PlayerArgument("target"))
-                .withPermission(CommandPermission.fromString("usefulcommands.god.others"))
+                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.god.others"))
                 .executes((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("god." + ((Player)args[0]).getUniqueId())) {
                         ConfigHandler.getData().set("god." + ((Player)args[0]).getUniqueId(), null);

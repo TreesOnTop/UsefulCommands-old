@@ -2,7 +2,6 @@ package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
 import org.bukkit.Bukkit;
 
@@ -12,7 +11,7 @@ import java.util.List;
 public class Broadcast {
     public static void register(){
         new CommandAPICommand("broadcast")
-                .withPermission(CommandPermission.fromString("usefulcommands.broadcast"))
+                .withPermission("usefulcommands.broadcast")
                 .withArguments(new GreedyStringArgument("message"))
                 .withAliases("bc")
                 .executes((sender, args) -> {

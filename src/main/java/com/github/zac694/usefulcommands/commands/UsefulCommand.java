@@ -9,9 +9,7 @@ import dev.jorel.commandapi.arguments.GreedyStringArgument;
 public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
-                .withArguments(new GreedyStringArgument("world").replaceSuggestions(info ->
-                        new String[] { "reload", "resetconfig", "resetdata", "help", "help 2", "help 3" }
-                ))
+                .withArguments(new GreedyStringArgument("world"))
                 .withPermission("usefulcommands.usefulcommands")
                 .withAliases("uc")
                 .executes((sender, args) -> {

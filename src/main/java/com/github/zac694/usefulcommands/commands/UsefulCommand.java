@@ -55,7 +55,6 @@ public class UsefulCommand {
                             sender.sendMessage("/suicide - kills the player");
                             sender.sendMessage("/uc help 3 for more commands");
                             sender.sendMessage("");
-                            break;
                         case "help 3":
                             sender.sendMessage("§6--- UsefulCommands help 2 ---");
                             sender.sendMessage("/tempmute <player> <time> - temporarily mutes a player");
@@ -66,7 +65,7 @@ public class UsefulCommand {
                             break;
                         default:
                             sender.sendMessage("§6--- UsefulCommands help ---");
-                            sender.sendMessage("/usefulcommands - Show this page");
+                            sender.sendMessage("/usefulcommands - show this page");
                             sender.sendMessage("/usefulcommands reload - reloads config");
                             sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                             sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
@@ -80,12 +79,11 @@ public class UsefulCommand {
                 .withAliases("uc")
                 .executesPlayer((sender, args) -> {
                     sender.sendMessage("§6--- UsefulCommands help ---");
-                    sender.sendMessage("/usefulcommands - Show this help");
+                    sender.sendMessage("/usefulcommands - show this page");
                     sender.sendMessage("/usefulcommands reload - reloads config");
                     sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                     sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
                     sender.sendMessage("/usefulcommands help - shows a list of all commands");
-                    sender.sendMessage("");
                 }).register();
     }
 }

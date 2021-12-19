@@ -9,7 +9,7 @@ import dev.jorel.commandapi.arguments.GreedyStringArgument;
 public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
-                .withArguments(new GreedyStringArgument("target"))
+                .withArguments(new GreedyStringArgument("world"))
                 .withPermission("usefulcommands.usefulcommands")
                 .withAliases("uc")
                 .executes((sender, args) -> {
@@ -71,7 +71,7 @@ public class UsefulCommand {
                             sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                             sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
                             sender.sendMessage("/usefulcommands help - shows all commands");
-                            sender.sendMessage("" + args[0]);
+                            sender.sendMessage("");
                             break;
                     }
                 }).register();
@@ -84,6 +84,8 @@ public class UsefulCommand {
                     sender.sendMessage("/usefulcommands reload - reloads config");
                     sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                     sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
+                    sender.sendMessage("/usefulcommands help - shows a list of all commands");
+                    sender.sendMessage("");
                 }).register();
     }
 }

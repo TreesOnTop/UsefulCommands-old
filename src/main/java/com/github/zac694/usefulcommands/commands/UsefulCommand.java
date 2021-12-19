@@ -70,7 +70,7 @@ public class UsefulCommand {
                             sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                             sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
                             sender.sendMessage("/usefulcommands help - shows all commands");
-                            sender.sendMessage("" + args[0]);
+                            sender.sendMessage("");
                         }
                     }
                 }).register();
@@ -83,6 +83,8 @@ public class UsefulCommand {
                     sender.sendMessage("/usefulcommands reload - reloads config");
                     sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                     sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
+                    sender.sendMessage("/usefulcommands help - shows a list of all commands");
+                    sender.sendMessage("");
                 }).register();
     }
 }

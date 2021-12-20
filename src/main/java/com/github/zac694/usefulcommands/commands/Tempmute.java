@@ -2,7 +2,7 @@ package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.arguments.LongArgument;
+import dev.jorel.commandapi.arguments.DoubleArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 import org.bukkit.entity.Player;
@@ -14,26 +14,26 @@ public class Tempmute {
         new CommandAPICommand("tempmute")
                 .withPermission("usefulcommands.tempmute")
                 .withArguments(new PlayerArgument("target"))
-                .withArguments(new LongArgument("time"))
+                .withArguments(new DoubleArgument("time"))
                 .withArguments(new StringArgument("timeFormat"))
                 .executes((sender, args) -> {
-                    long sec;
+                    double sec;
                     switch(args[2].toString().toLowerCase()){
                         case "minutes":
                         case "min":
                         case "m":
-                            sec = (long)args[1]*60;
+                            sec = (double)args[1]*60;
                             break;
                         case "hours":
                         case "h":
-                            sec = (long)args[1]*3600;
+                            sec = (double)args[1]*3600;
                             break;
                         case "days":
                         case "d":
-                            sec = (long)args[1]*86400;
+                            sec = (double)args[1]*86400;
                             break;
                         default:
-                            sec = (long)args[1];
+                            sec = (double)args[1];
                     }
                     if(ConfigHandler.getData().contains("tmuted." + ((Player)args[0]).getUniqueId())){
                         sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is already muted");

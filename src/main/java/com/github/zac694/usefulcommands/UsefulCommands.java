@@ -34,6 +34,7 @@ public final class UsefulCommands extends JavaPlugin {
         EnderChest.register();
         Ping.register();
         Vanish.register();
+        SetSpawn.register();
         //registering all the event handlers
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);

@@ -56,7 +56,7 @@ public class UsefulCommand {
                             sender.sendMessage("/uc help 3 for more commands");
                             sender.sendMessage("");
                         case "help 3":
-                            sender.sendMessage("§6--- UsefulCommands help 2 ---");
+                            sender.sendMessage("§6--- UsefulCommands help 3 ---");
                             sender.sendMessage("/tempmute <player> <time> - temporarily mutes a player");
                             sender.sendMessage("/usefulcommands [text] - command for server managing");
                             sender.sendMessage("/unmute <player> - unmutes a player");

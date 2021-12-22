@@ -35,6 +35,7 @@ public final class UsefulCommands extends JavaPlugin {
         Ping.register();
         Vanish.register();
         SetSpawn.register();
+        Spawn.register();
         //registering all the event handlers
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);

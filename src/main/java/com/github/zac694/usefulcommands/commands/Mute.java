@@ -9,7 +9,7 @@ public class Mute {
     public static void register(){
         new CommandAPICommand("mute")
                 .withPermission("usefulcommands.mute")
-                .withArguments(new PlayerArgument("target"))
+                .withArguments(new PlayerArgument("player"))
                 .executes((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("muted." + ((Player)args[0]).getUniqueId())){
                         sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " is already muted");

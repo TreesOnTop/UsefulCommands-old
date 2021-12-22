@@ -13,7 +13,7 @@ public class EnderChest {
                 sender.openInventory(sender.getEnderChest());
             }).register();
         new CommandAPICommand("enderchest")
-                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.enderchest.others"))
+                .withArguments(new PlayerArgument("player").withPermission("usefulcommands.enderchest.others"))
                 .withAliases("ec", "echest")
                 .executesPlayer((sender, args) -> {
                     sender.openInventory(((Player)args[0]).getEnderChest());

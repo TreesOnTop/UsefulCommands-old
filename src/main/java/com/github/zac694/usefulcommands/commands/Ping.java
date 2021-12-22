@@ -13,7 +13,7 @@ public class Ping {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your ping is " + sender.getPing());
                 }).register();
         new CommandAPICommand("ping")
-                .withArguments(new PlayerArgument("target"))
+                .withArguments(new PlayerArgument("player"))
                 .withAliases("p")
                 .executes((sender, args) -> {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + "'s ping is " + ((Player)args[0]).getPing());

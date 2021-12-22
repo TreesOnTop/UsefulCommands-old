@@ -14,7 +14,7 @@ public class Feed {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been fed");
                 }).register();
         new CommandAPICommand("feed")
-                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.feed.others"))
+                .withArguments(new PlayerArgument("player").withPermission("usefulcommands.feed.others"))
                 .executes((sender, args) -> {
                     ((Player)args[0]).setFoodLevel(20);
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been fed");

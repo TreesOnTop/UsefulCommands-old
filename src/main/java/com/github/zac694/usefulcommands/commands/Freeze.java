@@ -9,7 +9,7 @@ public class Freeze {
     public static void register(){
         new CommandAPICommand("freeze")
                 .withPermission("usefulcommands.freeze")
-                .withArguments(new PlayerArgument("target"))
+                .withArguments(new PlayerArgument("player"))
                 .executes((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("frozen." + ((Player)args[0]).getUniqueId())){
                         ConfigHandler.getData().set("frozen." + ((Player)args[0]).getUniqueId(), null);

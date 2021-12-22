@@ -18,7 +18,7 @@ public class Heal {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been healed");
                 }).register();
         new CommandAPICommand("heal")
-                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.heal.others"))
+                .withArguments(new PlayerArgument("player").withPermission("usefulcommands.heal.others"))
                 .executes((sender, args) -> {
                     ((Player)args[0]).setHealth(Objects.requireNonNull(((Player)args[0]).getAttribute(GENERIC_MAX_HEALTH)).getValue());
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You have been healed");

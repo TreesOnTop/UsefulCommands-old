@@ -13,9 +13,11 @@ public class Tempmute {
     public static void register(){
         new CommandAPICommand("tempmute")
                 .withPermission("usefulcommands.tempmute")
-                .withArguments(new PlayerArgument("target"))
+                .withArguments(new PlayerArgument("player"))
                 .withArguments(new LongArgument("time"))
-                .withArguments(new StringArgument("timeFormat"))
+                .withArguments(new StringArgument("timeFormat").replaceSuggestions(suggestions ->
+                        new String[] {"s", "m", "h", "d"}
+                ))
                 .executes((sender, args) -> {
                     long sec = switch (args[2].toString().toLowerCase()) {
                         case "minutes", "min", "m" -> (long) args[1] * 60;

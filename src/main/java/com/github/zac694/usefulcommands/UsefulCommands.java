@@ -12,11 +12,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class UsefulCommands extends JavaPlugin {
     @Override
     public void onEnable() {
-        //setting up core plugin classes
         ConfigHandler.setup();
         mainClass = this;
         CommandAPI.onEnable(this);
-        //registering all the commands
         Fly.register();
         Heal.register();
         Feed.register();
@@ -36,7 +34,6 @@ public final class UsefulCommands extends JavaPlugin {
         Vanish.register();
         SetSpawn.register();
         Spawn.register();
-        //registering all the event handlers
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);

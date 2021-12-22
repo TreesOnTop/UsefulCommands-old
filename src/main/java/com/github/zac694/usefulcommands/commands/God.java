@@ -21,7 +21,7 @@ public class God {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "You are now in god mode");
                 }).register();
         new CommandAPICommand("god")
-                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.god.others"))
+                .withArguments(new PlayerArgument("player").withPermission("usefulcommands.god.others"))
                 .executes((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("god." + ((Player)args[0]).getUniqueId())) {
                         ConfigHandler.getData().set("god." + ((Player)args[0]).getUniqueId(), null);

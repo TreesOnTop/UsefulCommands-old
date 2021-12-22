@@ -14,7 +14,7 @@ public class Fly {
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your flight has been set to " + sender.getAllowFlight());
                 }).register();
         new CommandAPICommand("fly")
-                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.fly.others"))
+                .withArguments(new PlayerArgument("player").withPermission("usefulcommands.fly.others"))
                 .executes((sender, args) -> {
                     ((Player)args[0]).setAllowFlight(!((Player) args[0]).getAllowFlight());
                     ((Player)args[0]).sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Your flight has been set to " + ((Player)args[0]).getAllowFlight());

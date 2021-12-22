@@ -20,7 +20,7 @@ public class Vanish {
                 }).register();
         new CommandAPICommand("vanish")
                 .withAliases("v")
-                .withArguments(new PlayerArgument("target").withPermission("usefulcommands.vanish.others"))
+                .withArguments(new PlayerArgument("player").withPermission("usefulcommands.vanish.others"))
                 .executes((sender, args) -> {
                     vanishing((Player) args[0]);
                 }).register();

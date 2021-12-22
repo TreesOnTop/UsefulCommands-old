@@ -8,7 +8,7 @@ public class InventorySee {
     public static void register(){
         new CommandAPICommand("inventorysee")
                 .withPermission("usefulcommands.invsee")
-                .withArguments(new PlayerArgument("target"))
+                .withArguments(new PlayerArgument("player"))
                 .withAliases("invsee", "seeinv")
                 .executesPlayer((sender, args) -> {
                     sender.openInventory(((Player)args[0]).getInventory());

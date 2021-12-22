@@ -9,7 +9,9 @@ import dev.jorel.commandapi.arguments.GreedyStringArgument;
 public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
-                .withArguments(new GreedyStringArgument("world"))
+                .withArguments(new GreedyStringArgument("string").replaceSuggestions(suggestions ->
+                        new String[] {"reload", "resetconfig", "resetdata", "help", "help 2", "help 3" }
+                ))
                 .withPermission("usefulcommands.usefulcommands")
                 .withAliases("uc")
                 .executes((sender, args) -> {
@@ -51,12 +53,14 @@ public class UsefulCommand {
                             sender.sendMessage("/inventorysee <player> - allows you to see and edit a players inventory");
                             sender.sendMessage("/mute <player> - mutes a player");
                             sender.sendMessage("/ping [player] - gets a player's ping");
-                            sender.sendMessage("/suicide - kills the player");
+                            sender.sendMessage("/setspawn [x] [y] [z] [world || yaw] [pitch] [world] - sets the server spawn to a location");
                             sender.sendMessage("/uc help 3 for more commands");
                             sender.sendMessage("");
                         }
                         case "help 3" -> {
                             sender.sendMessage("§6--- UsefulCommands help 3 ---");
+                            sender.sendMessage("/spawn - teleports you to spawn");
+                            sender.sendMessage("/suicide - kills the player");
                             sender.sendMessage("/tempmute <player> <time> - temporarily mutes a player");
                             sender.sendMessage("/usefulcommands [text] - command for server managing");
                             sender.sendMessage("/unmute <player> - unmutes a player");

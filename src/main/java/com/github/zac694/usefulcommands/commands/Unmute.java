@@ -9,7 +9,7 @@ public class Unmute {
     public static void register(){
         new CommandAPICommand("unmute")
                 .withPermission("usefulcommands.mute")
-                .withArguments(new PlayerArgument("target"))
+                .withArguments(new PlayerArgument("player"))
                 .executes((sender, args) -> {
                     if(ConfigHandler.getData().getBoolean("muted." + ((Player)args[0]).getUniqueId()) || ConfigHandler.getData().contains("tmuted." + ((Player)args[0]).getUniqueId())){
                         ConfigHandler.getData().set("muted." + ((Player)args[0]).getUniqueId(), null);

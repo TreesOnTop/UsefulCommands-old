@@ -9,9 +9,7 @@ import dev.jorel.commandapi.arguments.GreedyStringArgument;
 public class UsefulCommand {
     public static void register(){
         new CommandAPICommand("usefulcommands")
-                .withArguments(new GreedyStringArgument("string").replaceSuggestions(suggestions ->
-                        new String[] {"reload", "resetconfig", "resetdata", "help", "help 2", "help 3" }
-                ))
+                .withArguments(new GreedyStringArgument("target"))
                 .withPermission("usefulcommands.usefulcommands")
                 .withAliases("uc")
                 .executes((sender, args) -> {
@@ -53,15 +51,15 @@ public class UsefulCommand {
                             sender.sendMessage("/inventorysee <player> - allows you to see and edit a players inventory");
                             sender.sendMessage("/mute <player> - mutes a player");
                             sender.sendMessage("/ping [player] - gets a player's ping");
-                            sender.sendMessage("/setspawn [x] [y] [z] [world || yaw] [pitch] [world] - sets the server spawn to a location");
+                            sender.sendMessage("/setspawn [<x> <y> <z> <world>] or [<x> <y> <z> <pitch> <yaw> <world>] - sets the servers spawn");
                             sender.sendMessage("/uc help 3 for more commands");
                             sender.sendMessage("");
                         }
                         case "help 3" -> {
-                            sender.sendMessage("§6--- UsefulCommands help 3 ---");
-                            sender.sendMessage("/spawn - teleports you to spawn");
+                            sender.sendMessage("/spawn [player] - teleports a player to the location at /setspawn");
                             sender.sendMessage("/suicide - kills the player");
-                            sender.sendMessage("/tempmute <player> <time> - temporarily mutes a player");
+                            sender.sendMessage("/tempban <player> <time> <time unit> <reason> - temporarily bans a player (only on 1.14+)");
+                            sender.sendMessage("/tempmute <player> <time> <time unit> - temporarily mutes a player");
                             sender.sendMessage("/usefulcommands [text] - command for server managing");
                             sender.sendMessage("/unmute <player> - unmutes a player");
                             sender.sendMessage("/vanish [<player>] - hides a player from everyone on the server");

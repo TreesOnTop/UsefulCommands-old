@@ -1,7 +1,7 @@
 package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
-import com.github.zac694.usefulcommands.Utils;
+import com.github.zac694.usefulcommands.functions.Utils;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import org.bukkit.entity.Player;

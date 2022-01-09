@@ -4,6 +4,7 @@ import com.github.zac694.usefulcommands.commands.*;
 import com.github.zac694.usefulcommands.events.*;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIConfig;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class UsefulCommands extends JavaPlugin {
@@ -31,7 +32,9 @@ public final class UsefulCommands extends JavaPlugin {
         Vanish.register();
         SetSpawn.register();
         Spawn.register();
-        Tempban.register();
+        if(!Bukkit.getServer().getBukkitVersion().equals("1.13.2-R0.1-SNAPSHOT")) {
+            Tempban.register();
+        }
         getServer().getPluginManager().registerEvents(new EntityDamage(), this);
         getServer().getPluginManager().registerEvents(new PlayerMove(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);

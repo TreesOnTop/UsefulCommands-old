@@ -2,10 +2,7 @@ package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
 import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.arguments.GreedyStringArgument;
-import dev.jorel.commandapi.arguments.LongArgument;
-import dev.jorel.commandapi.arguments.PlayerArgument;
-import dev.jorel.commandapi.arguments.StringArgument;
+import dev.jorel.commandapi.arguments.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -18,19 +15,30 @@ public class Tempban {
         new CommandAPICommand("tempban")
                 .withPermission("usefulcommands.tempban")
                 .withArguments(new PlayerArgument("player"))
-                .withArguments(new LongArgument("time"))
-                .withArguments(new StringArgument("timeFormat").replaceSuggestions(suggestions ->
-                        new String[] {"s", "m", "h", "d"}
-                ))
+                .withArguments(new DoubleArgument("time"))
+                .withArguments(new StringArgument("timeFormat"))
                 .withArguments(new GreedyStringArgument("reason"))
                 .executes((sender, args) -> {
-                    long mili = switch (args[2].toString().toLowerCase()) {
-                        case "minutes", "min", "m" -> (long) args[1] * 60000;
-                        case "hours", "h" -> (long) args[1] * 3600000;
-                        case "days", "d" -> (long) args[1] * 86400000;
-                        default -> (long) args[1];
-                    };
-                    java.util.Date time = new java.util.Date(Instant.now().getEpochSecond()*1000+mili);
+                    double mili;
+                    switch (args[2].toString().toLowerCase()) {
+                        case "minutes":
+                        case "min":
+                        case "m":
+                            mili = (double)args[1] * 60000;
+                            break;
+                        case "hours":
+                        case "h":
+                            mili = (double)args[1] * 3600000;
+                            break;
+                        case "days":
+                        case "d":
+                            mili = (double)args[1] * 86400000;
+                            break;
+                        default:
+                            mili = (double)args[1];
+                            break;
+                    }
+                    java.util.Date time = new java.util.Date(Instant.now().getEpochSecond()*1000+Math.round(mili));
                     Bukkit.getBanList(NAME).addBan(String.valueOf(((Player)args[0]).getUniqueId()), String.valueOf(args[3]), time, String.valueOf(sender));
                     ((Player)args[0]).kickPlayer(String.valueOf(args[3]));
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been banned for " + args[1] + args[2] + " for " + args[3]);

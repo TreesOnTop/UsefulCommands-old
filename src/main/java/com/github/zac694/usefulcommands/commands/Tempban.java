@@ -24,13 +24,13 @@ public class Tempban {
                 ))
                 .withArguments(new GreedyStringArgument("reason"))
                 .executes((sender, args) -> {
-                    long mili = switch (args[2].toString().toLowerCase()) {
+                    long milli = switch (args[2].toString().toLowerCase()) {
                         case "minutes", "min", "m" -> (long) args[1] * 60000;
                         case "hours", "h" -> (long) args[1] * 3600000;
                         case "days", "d" -> (long) args[1] * 86400000;
                         default -> (long) args[1];
                     };
-                    java.util.Date time = new java.util.Date(Instant.now().getEpochSecond()*1000+mili);
+                    java.util.Date time = new java.util.Date(Instant.now().getEpochSecond()*1000+milli);
                     Bukkit.getBanList(NAME).addBan(String.valueOf(((Player)args[0]).getUniqueId()), String.valueOf(args[3]), time, String.valueOf(sender));
                     ((Player)args[0]).kickPlayer(String.valueOf(args[3]));
                     sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been banned for " + args[1] + args[2] + " for " + args[3]);

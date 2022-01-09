@@ -4,3 +4,5 @@ Broadcast:
   - ''
   - '§7[§cBroadcast§7]§r <broadcast-message>'
   - ''
+SpawnOnJoin: false
+SpawnOverridesBed: false

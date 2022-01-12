@@ -1,9 +1,13 @@
 package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
+import com.github.zac694.usefulcommands.UsefulCommands;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class UsefulCommand {
@@ -13,23 +17,18 @@ public class UsefulCommand {
                 .withPermission("usefulcommands.usefulcommands")
                 .withAliases("uc")
                 .executes((sender, args) -> {
+                    File configFile = ConfigHandler.fileInit("config.yml", UsefulCommands.getMainClass());
+                    YamlConfiguration config = ConfigHandler.getConfig(configFile);
                     String string = (String)args[0];
                     switch (string) {
-                        case "reload" -> {
-                            ConfigHandler.reload();
-                            sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Plugin reloaded");
-                        }
                         case "resetconfig" -> {
-                            ConfigHandler.getConfigFile().delete();
-                            ConfigHandler.setup();
-                            sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Config reset");
-                        }
-                        case "resetdata" -> {
-                            ConfigHandler.getDataFile().delete();
-                            ConfigHandler.setup();
-                            sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + "Data reset");
-                        }
-                        case "help", "help 1" -> {
+                            configFile.delete();
+                            sender.sendMessage(config.getString("OutputPrefix") + "Config reset");
+                        }case "resetdata" -> {
+                            File dataFile = ConfigHandler.fileInit("data.yml", UsefulCommands.getMainClass());
+                            dataFile.delete();
+                            sender.sendMessage(config.getString("OutputPrefix") + "Data reset");
+                        }case "help", "help 1" -> {
                             sender.sendMessage("§6--- UsefulCommands help ---");
                             sender.sendMessage("/broadcast <message> - broadcasts a message to all players");
                             sender.sendMessage("/clearchat - clears the chat");
@@ -82,7 +81,6 @@ public class UsefulCommand {
                 .executesPlayer((sender, args) -> {
                     sender.sendMessage("§6--- UsefulCommands help ---");
                     sender.sendMessage("/usefulcommands - Show this help");
-                    sender.sendMessage("/usefulcommands reload - reloads config");
                     sender.sendMessage("/usefulcommands resetconfig - deletes config file and creates a new one");
                     sender.sendMessage("/usefulcommands resetdata - deletes data file and creates a new one");
                     sender.sendMessage("/usefulcommands help - shows a list of all commands");

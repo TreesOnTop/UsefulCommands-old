@@ -1,14 +1,17 @@
 package com.github.zac694.usefulcommands.commands;
 
 import com.github.zac694.usefulcommands.ConfigHandler;
+import com.github.zac694.usefulcommands.UsefulCommands;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
 import dev.jorel.commandapi.arguments.LongArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.time.Instant;
 
 import static org.bukkit.BanList.Type.NAME;
@@ -24,6 +27,8 @@ public class Tempban {
                 ))
                 .withArguments(new GreedyStringArgument("reason"))
                 .executes((sender, args) -> {
+                    File configFile = ConfigHandler.fileInit("config.yml", UsefulCommands.getMainClass());
+                    YamlConfiguration config = ConfigHandler.getConfig(configFile);
                     long milli = switch (args[2].toString().toLowerCase()) {
                         case "minutes", "min", "m" -> (long) args[1] * 60000;
                         case "hours", "h" -> (long) args[1] * 3600000;
@@ -33,7 +38,7 @@ public class Tempban {
                     java.util.Date time = new java.util.Date(Instant.now().getEpochSecond()*1000+milli);
                     Bukkit.getBanList(NAME).addBan(String.valueOf(((Player)args[0]).getUniqueId()), String.valueOf(args[3]), time, String.valueOf(sender));
                     ((Player)args[0]).kickPlayer(String.valueOf(args[3]));
-                    sender.sendMessage(ConfigHandler.getConfig().getString("OutputPrefix") + ((Player)args[0]).getName() + " has been banned for " + args[1] + args[2] + " for " + args[3]);
+                    sender.sendMessage(config.getString("OutputPrefix") + ((Player)args[0]).getName() + " has been banned for " + args[1] + args[2] + " for " + args[3]);
                 }).register();
     }
 }

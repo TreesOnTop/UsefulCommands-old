@@ -9,18 +9,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class UsefulCommands extends JavaPlugin {
     @Override
     public void onEnable() {
-        ConfigHandler.setup();
         mainClass = this;
         CommandAPI.onEnable(this);
+        Broadcast.register();
+        God.register();
         Fly.register();
         Heal.register();
         Feed.register();
         Suicide.register();
         InventorySee.register();
         Gamemode.register();
-        Broadcast.register();
         ClearChat.register();
-        God.register();
         UsefulCommand.register();
         Freeze.register();
         Mute.register();
